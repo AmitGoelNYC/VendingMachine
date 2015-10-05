@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">VendingMachine</string>
+    <string name="item_prompt">Please Choose an Item</string>
+
+    <string-array name="item_arrays">
+        <item>Coke</item>
+        <item>Pepsi</item>
+        <item>Water Bottle</item>
+        <item>Mountain Dew</item>
+        <item>Sprite</item>
+        <item>Ginger Ale</item>
+        <item>Fanta</item>
+        <item>Chips</item>
+    </string-array>
+
+    <string-array name="item_costs">
+        <item>1.25</item>
+        <item>1.25</item>
+        <item>.75</item>
+        <item>1.25</item>
+        <item>2.00</item>
+        <item>1.50</item>
+        <item>1.30</item>
+        <item>1.65</item>
+    </string-array>
+</resources>
