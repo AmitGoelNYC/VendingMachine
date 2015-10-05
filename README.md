@@ -1,0 +1,2 @@
+# VendingMachine
+VendingMachine Sample app
