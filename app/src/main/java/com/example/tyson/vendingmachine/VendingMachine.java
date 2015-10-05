@@ -2,7 +2,7 @@ package com.example.tyson.vendingmachine;
 
 import java.util.ArrayList;
 
-public class VendingMachine implements VendingMachineState{
+public class VendingMachine implements VendingMachineState {
 
     public static double mTotalMoney;
     ArrayList<VendingItem> mItems;
@@ -18,10 +18,11 @@ public class VendingMachine implements VendingMachineState{
         mItems = item;
     }
 
-    public enum Coins{
+    public enum Coins {
         NICKEL(.05), DIME(.10), QUARTER(.25), DOLLARCOIN(1.00);
         public double value;
-        Coins(double value){
+
+        Coins(double value) {
             this.value = value;
         }
     }
@@ -45,41 +46,33 @@ public class VendingMachine implements VendingMachineState{
     private void dispenseItem(VendingItem item, double returnMoney) {
         item.mQuantity--;
         coinsArrayList = new ArrayList<>();
-        if(returnMoney >= Coins.DOLLARCOIN.value){
-            while(returnMoney >= Coins.DOLLARCOIN.value) {
-                coinsArrayList.add(Coins.DOLLARCOIN);
-                returnMoney -= Coins.DOLLARCOIN.value;
-                returnMoney *= 100;
-                returnMoney = Math.round(returnMoney);
-                returnMoney /= 100;
-            }
+        while (returnMoney >= Coins.DOLLARCOIN.value) {
+            coinsArrayList.add(Coins.DOLLARCOIN);
+            returnMoney -= Coins.DOLLARCOIN.value;
+            returnMoney *= 100;
+            returnMoney = Math.round(returnMoney);
+            returnMoney /= 100;
         }
-        if(returnMoney >= Coins.QUARTER.value ){
-            while(returnMoney >= Coins.QUARTER.value) {
-                coinsArrayList.add(Coins.QUARTER);
-                returnMoney -= Coins.QUARTER.value;
-                returnMoney *= 100;
-                returnMoney = Math.round(returnMoney);
-                returnMoney /= 100;
-            }
+        while (returnMoney >= Coins.QUARTER.value) {
+            coinsArrayList.add(Coins.QUARTER);
+            returnMoney -= Coins.QUARTER.value;
+            returnMoney *= 100;
+            returnMoney = Math.round(returnMoney);
+            returnMoney /= 100;
         }
-        if(returnMoney >= Coins.DIME.value) {
-            while(returnMoney >= Coins.DIME.value) {
-                coinsArrayList.add(Coins.DIME);
-                returnMoney -= Coins.DIME.value;
-                returnMoney *= 100;
-                returnMoney = Math.round(returnMoney);
-                returnMoney /= 100;
-            }
+        while (returnMoney >= Coins.DIME.value) {
+            coinsArrayList.add(Coins.DIME);
+            returnMoney -= Coins.DIME.value;
+            returnMoney *= 100;
+            returnMoney = Math.round(returnMoney);
+            returnMoney /= 100;
         }
-        if(returnMoney >= Coins.NICKEL.value){
-            while(returnMoney >=  Coins.NICKEL.value) {
-                coinsArrayList.add(Coins.NICKEL);
-                returnMoney -= Coins.NICKEL.value;
-                returnMoney *= 100;
-                returnMoney = Math.round(returnMoney);
-                returnMoney /= 100;
-            }
+        while (returnMoney >= Coins.NICKEL.value) {
+            coinsArrayList.add(Coins.NICKEL);
+            returnMoney -= Coins.NICKEL.value;
+            returnMoney *= 100;
+            returnMoney = Math.round(returnMoney);
+            returnMoney /= 100;
         }
     }
 

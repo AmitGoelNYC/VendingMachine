@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
 
@@ -30,12 +31,6 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
         mDepositText = (EditText) findViewById(R.id.depositAmount);
         spinner = (Spinner) findViewById(R.id.spinner);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.item_arrays, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
         vendingItems = new ArrayList<>();
 
         mChangeReturned = (TextView) findViewById(R.id.textView);
@@ -43,10 +38,19 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         vendingMachine = new VendingMachine(100);
         String[] itemNames = getResources().getStringArray(R.array.item_arrays);
         String[] itemPrice = getResources().getStringArray(R.array.item_costs);
+        List<String> itemsDisplay = new ArrayList<>();
+
         for(int i = 0; i< itemNames.length; i++){
+            itemsDisplay.add(itemNames[i] + " - " + itemPrice[i]);
             double price = Double.parseDouble(itemPrice[i]);
             vendingItems.add(new VendingItem(price, itemNames[i], 20));
         }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, itemsDisplay);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+        spinner.setOnItemSelectedListener(this);
         vendingMachine.addItems(vendingItems);
     }
 
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
                     }
                     mChangeReturned.setText(returnChange);
                     textTotalChange.setText(String.valueOf(vendingMachine.returnMoney));
+                    mDepositText.setText("");
                 } else {
                     Toast.makeText(this, "Please enter more money", Toast.LENGTH_LONG).show();
                 }
